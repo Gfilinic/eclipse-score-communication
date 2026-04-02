@@ -11,6 +11,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
 
+load("@rules_cc//cc:cc_shared_library.bzl", "cc_shared_library")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 load("//score/mw:common_features.bzl", "COMPILER_WARNING_FEATURES")
 
@@ -31,4 +32,10 @@ cc_library(
         "//score/mw/com/impl/tracing:i_binding_tracing_runtime",
         "@googletest//:gtest",
     ],
+)
+cc_shared_library(
+    name = "tracing_runtime_export",
+    testonly = True,
+    deps = [":tracing_runtime"],
+    shared_lib_name = "libscore_mw_com_impl_bindings_mock_binding_tracing_runtime.so",
 )

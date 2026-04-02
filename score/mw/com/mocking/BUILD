@@ -1,3 +1,4 @@
+load("@rules_cc//cc:cc_shared_library.bzl", "cc_shared_library")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 load("@score_baselibs//:bazel/unit_tests.bzl", "cc_gtest_unit_test", "cc_unit_test_suites_for_host_and_qnx")
 load("//score/mw:common_features.bzl", "COMPILER_WARNING_FEATURES")
@@ -36,6 +37,12 @@ cc_library(
         "@score_baselibs//score/memory:string_literal",
         "@score_baselibs//score/result",
     ],
+)
+
+cc_shared_library(
+    name = "i_runtime_export",
+    deps = [":i_runtime"],
+    shared_lib_name = "libscore_mw_com_impl_mocking_i_runtime.so",
 )
 
 cc_library(

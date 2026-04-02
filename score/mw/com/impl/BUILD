@@ -11,6 +11,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
 
+load("@rules_cc//cc:cc_shared_library.bzl", "cc_shared_library")
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 load("@score_baselibs//:bazel/unit_tests.bzl", "cc_gtest_unit_test", "cc_unit_test", "cc_unit_test_suites_for_host_and_qnx")
 load("//score/mw:common_features.bzl", "COMPILER_WARNING_FEATURES")
@@ -158,6 +159,11 @@ cc_library(
         "//score/mw/com/impl/plumbing:sample_allocatee_ptr",
         "@score_baselibs//score/result",
     ],
+)
+cc_shared_library(
+    name = "generic_skeleton_event_export",
+    deps = [":generic_skeleton_event"],
+    shared_lib_name = "libscore_mw_com_impl_generic_skeleton_event.so",
 )
 
 cc_library(
@@ -882,6 +888,12 @@ cc_library(
         "@score_baselibs//score/memory/shared:types",
         "@score_logging//score/mw/log",
     ],
+)
+
+cc_shared_library(
+    name = "runtime_export",
+    deps = [":runtime"],
+    shared_lib_name = "libscore_mw_com_impl_runtime.so",
 )
 
 cc_library(

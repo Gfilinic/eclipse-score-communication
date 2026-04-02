@@ -11,6 +11,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
 
+load("@rules_cc//cc:cc_shared_library.bzl", "cc_shared_library")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 load("//score/mw:common_features.bzl", "COMPILER_WARNING_FEATURES")
 
@@ -71,6 +72,13 @@ cc_library(
     ],
 )
 
+cc_shared_library(
+    name = "generic_skeleton_event_export",
+    testonly = True,
+    deps = [":generic_skeleton_event"],
+    shared_lib_name = "libscore_mw_com_impl_bindings_mock_binding_generic_skeleton_event.so",
+)
+
 cc_library(
     name = "sample_ptr",
     srcs = ["sample_ptr.cpp"],
@@ -83,6 +91,12 @@ cc_library(
     ],
 )
 
+cc_shared_library(
+    name = "sample_ptr_export",
+    deps = [":sample_ptr"],
+    shared_lib_name = "libscore_mw_com_impl_bindings_mock_binding_sample_ptr.so",
+)
+
 cc_library(
     name = "sample_allocatee_ptr",
     hdrs = ["sample_allocatee_ptr.h"],
@@ -92,4 +106,10 @@ cc_library(
     deps = [
         "@score_baselibs//score/language/futurecpp",
     ],
+)
+
+cc_shared_library(
+    name = "sample_allocatee_ptr_export",
+    deps = [":sample_allocatee_ptr"],
+    shared_lib_name = "libscore_mw_com_impl_bindings_mock_binding_sample_allocatee_ptr.so",
 )

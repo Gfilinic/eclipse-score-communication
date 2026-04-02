@@ -11,6 +11,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
 
+load("@rules_cc//cc:cc_shared_library.bzl", "cc_shared_library")
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 load("@score_baselibs//:bazel/unit_tests.bzl", "cc_gtest_unit_test", "cc_unit_test", "cc_unit_test_suites_for_host_and_qnx")
 load("//score/mw:common_features.bzl", "COMPILER_WARNING_FEATURES")
@@ -87,6 +88,12 @@ cc_library(
     ],
 )
 
+cc_shared_library(
+    name = "i_runtime_export",
+    deps = [":i_runtime"],
+    shared_lib_name = "libscore_mw_com_impl_bindings_lola_i_runtime.so",
+)
+
 cc_library(
     name = "i_shm_path_builder",
     srcs = ["i_shm_path_builder.cpp"],
@@ -136,6 +143,12 @@ cc_library(
         "@score_baselibs//score/memory/shared",
         "@score_logging//score/mw/log",
     ],
+)
+
+cc_shared_library(
+    name = "runtime_export",
+    deps = [":runtime"],
+    shared_lib_name = "libscore_mw_com_impl_bindings_lola_runtime.so",
 )
 
 cc_library(
@@ -262,6 +275,12 @@ cc_library(
         "//score/mw/com/impl:generic_skeleton_event_binding",
         "//score/mw/com/impl/tracing:skeleton_event_tracing",
     ],
+)
+
+cc_shared_library(
+    name = "generic_skeleton_event_export",
+    deps = [":generic_skeleton_event"],
+    shared_lib_name = "libscore_mw_com_impl_binding_lola_generic_skeleton_event.so",
 )
 
 cc_library(
@@ -423,6 +442,12 @@ cc_library(
         ":event_data_control",
         ":slot_decrementer",
     ],
+)
+
+cc_shared_library(
+    name = "sample_ptr_export",
+    deps = [":sample_ptr"],
+    shared_lib_name = "libscore_mw_com_impl_bindings_lola_sample_ptr.so",
 )
 
 cc_library(
@@ -670,6 +695,12 @@ cc_library(
         ":control_slot_types",
         ":event_data_control_composite",
     ],
+)
+
+cc_shared_library(
+    name = "sample_allocatee_ptr_export",
+    deps = [":sample_allocatee_ptr"],
+    shared_lib_name = "libscore_mw_com_impl_bindings_lola_sample_allocatee_ptr.so",
 )
 
 cc_library(
